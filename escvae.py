@@ -375,16 +375,12 @@ class EsCVAE(nn.Module):
             with torch.no_grad():
                 self.forward(feed_dict=feed_dict, mode='test')
             word_outs = self.dec_out_words.cpu().numpy()
-            print("WORD_OUTS:", word_outs)
             sample_words = np.split(word_outs, repeat, axis=0)
 
             true_srcs = feed_dict['input_sentences'].cpu().numpy()
             true_srcs_lens = feed_dict['input_sentence_lens'].cpu().numpy()
             true_outs = feed_dict['output_tokens'].cpu().numpy()
             local_t += 1
-
-            # print("TRUE_SRC:", true_srcs)
-            # print("TRUE_OUT:", true_outs)
 
             if dest != sys.stdout:
                 if local_t % (test_feed.num_batch // 10) == 0:
