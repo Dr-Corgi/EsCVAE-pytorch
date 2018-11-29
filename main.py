@@ -69,7 +69,7 @@ def main():
         os.mkdir(log_dir)
 
     # 构建模型
-    model = Seq2Seq(config, corpus, log_dir=None if flags.forward_only else log_dir)
+    model = EsCVAE(config, corpus, log_dir=None if flags.forward_only else log_dir)
 
     print("\nOutput Configs")
 
